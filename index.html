@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#12352c">
+  <title>Todos pela Gabi 🤍 | Ajude na Consulta Médica</title>
+  <meta name="description" content="A Gabi precisa de uma consulta com médico especialista ainda esta semana. Qualquer valor faz diferença. Ajude via Pix.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Todos pela Gabi 🤍">
+  <meta property="og:description" content="Ajude a Gabi a chegar à consulta com o médico especialista. Qualquer valor faz diferença.">
+  <meta property="og:image" content="gabi.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="avatar-ring">
+      <img src="gabi.jpg" alt="Foto da Gabi" class="gabi-photo" width="160" height="160">
+    </div>
+    <span class="badge-urgent"><i class="pulse-dot"></i>Consulta ainda esta semana</span>
+    <h1>Todos pela Gabi <span class="heart">🤍</span></h1>
+    <p class="subtitle">Campanha organizada com fé e amor por <strong>Eline Reis</strong></p>
+  </header>
+
+  <main class="container">
+    <!-- Meta -->
+    <section class="goal-card" aria-labelledby="goal-title">
+      <div class="goal-header">
+        <span class="goal-label" id="goal-title">Meta da consulta</span>
+        <span class="goal-value" id="goal-value">R$ 2.800,00</span>
+      </div>
+      <div id="progress-wrap" class="progress-wrap hidden">
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-meta">
+          <span><strong id="raised-value">R$ 0,00</strong> arrecadados</span>
+          <span id="progress-percent">0%</span>
+        </div>
+      </div>
+      <p class="goal-desc">Valor integral da consulta com o médico especialista que vai definir o novo caminho do tratamento da Gabi.</p>
+      <button type="button" class="btn-primary btn-cta" id="hero-cta">Quero ajudar agora</button>
+    </section>
+
+    <!-- História -->
+    <section class="story-section">
+      <h2>A história da Gabi</h2>
+      <p>Oi, gente! 🤍</p>
+      <p>A Gabi realizou um exame recentemente e, infelizmente, recebemos a notícia de que a imunoterapia não apresentou os resultados que esperávamos e que o câncer aumentou de tamanho.</p>
+      <p>Apesar disso, seguimos com muita fé em Deus e esperança nas possibilidades que a medicina ainda pode nos oferecer.</p>
+      <p>Encontramos um médico especialista no caso dela e estamos mobilizando esforços para arcar com o valor da consulta, que precisa acontecer <strong>ainda esta semana</strong>.</p>
+      <p>O valor é de <strong>R$ 2.800,00</strong>, e qualquer contribuição, independentemente do valor, fará uma enorme diferença nesse momento. Acreditamos que essa consulta pode abrir um novo caminho para o tratamento da Gabi e representar uma grande esperança para a vida dela.</p>
+      <p class="highlight-prayer">Contamos com vocês. Que Deus abençoe cada um que puder contribuir e compartilhar! 🙏</p>
+    </section>
+
+    <!-- Doação -->
+    <section class="donation-box" id="doar" aria-live="polite">
+      <!-- Estado 1 -->
+      <div id="state-select" class="state">
+        <h2>Escolha um valor para ajudar</h2>
+        <p class="helper-text">Gerar o Pix leva alguns segundos. O dinheiro vai direto para a conta da Eline.</p>
+
+        <div class="preset-buttons" role="group" aria-label="Valores sugeridos">
+          <button type="button" class="preset-btn" data-value="20">R$ 20</button>
+          <button type="button" class="preset-btn" data-value="50">R$ 50</button>
+          <button type="button" class="preset-btn" data-value="100">R$ 100</button>
+          <button type="button" class="preset-btn" data-value="200">R$ 200</button>
+        </div>
+
+        <form id="pix-form" novalidate>
+          <label for="custom-amount" class="amount-label">Ou digite outro valor</label>
+          <div class="amount-field" id="amount-field">
+            <span class="amount-prefix">R$</span>
+            <input type="text" id="custom-amount" inputmode="decimal" autocomplete="off" placeholder="0,00" maxlength="9">
+          </div>
+          <p class="impact" id="impact-text" aria-live="polite">&nbsp;</p>
+          <p class="field-error" id="amount-error" role="alert"></p>
+          <button type="submit" class="btn-primary">Gerar Pix</button>
+        </form>
+
+        <div class="direct-pix-box">
+          <span class="divider-text">ou copie a chave diretamente</span>
+          <div class="key-card">
+            <div class="key-info">
+              <span class="key-label">Chave Pix</span>
+              <strong id="raw-pix-key">99981932854</strong>
+              <span class="key-owner">Titular: Eline Reis</span>
+            </div>
+            <button type="button" id="copy-raw-btn" class="btn-secondary">Copiar chave</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estado: Loading -->
+      <div id="state-loading" class="state hidden" aria-busy="true">
+        <div class="spinner" aria-hidden="true"></div>
+        <h2>Gerando seu Pix…</h2>
+        <p class="helper-text">Só um instante.</p>
+      </div>
+
+      <!-- Estado 2 -->
+      <div id="state-checkout" class="state hidden">
+        <div class="selected-badge">Valor escolhido: <strong id="display-amount">R$ 0,00</strong></div>
+        <h2>Pague com o Pix</h2>
+        <p class="checkout-instruction">Abra o app do seu banco, vá em <strong>Pix → Pix Copia e Cola</strong> e cole o código. Ou escaneie o QR Code.</p>
+
+        <div class="qr-wrapper" id="qr-wrapper" aria-label="QR Code Pix"></div>
+
+        <div class="input-group">
+          <label for="pix-payload-output" class="sr-only">Código Pix Copia e Cola</label>
+          <textarea id="pix-payload-output" rows="3" readonly></textarea>
+        </div>
+
+        <button type="button" id="copy-payload-btn" class="btn-primary">Copiar código Pix</button>
+        <button type="button" id="confirm-paid-btn" class="btn-success">Já fiz o Pix 🤍</button>
+        <button type="button" id="back-btn" class="btn-text">Escolher outro valor</button>
+      </div>
+
+      <!-- Estado 3 -->
+      <div id="state-thanks" class="state hidden">
+        <div class="thanks-icon">🤍</div>
+        <h2>Muito obrigado pela sua ajuda!</h2>
+        <p>Que Deus retribua em dobro a sua generosidade. Se puder, compartilhe esta página para chegarmos à consulta a tempo.</p>
+        <button type="button" id="share-whatsapp-btn" class="btn-whatsapp">Compartilhar no WhatsApp</button>
+        <button type="button" id="reset-btn" class="btn-text">Fazer outra contribuição</button>
+      </div>
+    </section>
+
+    <footer class="footer-share">
+      <p>Não pode doar agora? Compartilhar também ajuda muito.</p>
+      <button type="button" id="footer-whatsapp-btn" class="btn-whatsapp-outline">Compartilhar no WhatsApp</button>
+      <button type="button" id="native-share-btn" class="btn-text hidden">Mais opções de compartilhamento</button>
+    </footer>
+  </main>
+
+  <!-- CTA fixo -->
+  <div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+    <button type="button" class="btn-primary" id="sticky-btn" tabindex="-1">Ajudar a Gabi 🤍</button>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
