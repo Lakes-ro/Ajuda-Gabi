@@ -10,7 +10,7 @@ const CAMPAIGN = {
   minAmount: 1,
   maxAmount: 50000,
   pix: {
-    key: "99981932854",
+    key: "+5599981932854", // telefone no formato exigido pelo Pix: +55 + DDD + número
     merchantName: "ELINE REIS",
     merchantCity: "BRASIL",
     txid: "CONSULTAGABI",
